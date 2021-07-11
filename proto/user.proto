@@ -1,0 +1,12 @@
+syntax = "proto3";
+package user;
+
+import "common.proto";
+
+service UserService {
+    rpc GetMe (common.Empty) returns (Me);
+}
+
+message Me {
+    string name = 1;
+}
