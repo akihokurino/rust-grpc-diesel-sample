@@ -6,18 +6,18 @@ use reqwest::{Body, Method, Response, Url};
 
 #[derive(Clone, Debug)]
 pub struct Client {
-    service_base_url: Url,
+    base_url: Url,
 }
 
 impl Client {
-    pub fn new() -> Self {
+    pub fn new(url: String) -> Self {
         Client {
-            service_base_url: "https://liberaworks-dev.appspot.com".parse().unwrap(),
+            base_url: url.parse().unwrap(),
         }
     }
 
     async fn call(&self, input: CallInput, token: String) -> AppResult<Response> {
-        let mut url = self.service_base_url.clone();
+        let mut url = self.base_url.clone();
         url.set_path(format!("{}", input.path).as_str());
         for q in input.query {
             url.query_pairs_mut()

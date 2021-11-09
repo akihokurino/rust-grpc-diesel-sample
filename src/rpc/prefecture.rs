@@ -26,10 +26,7 @@ impl PrefectureService for PrefectureServiceImpl {
         &self,
         _request: Request<common::Empty>,
     ) -> Result<Response<pb::PrefectureList>, Status> {
-        let prefs = self.cli.get_list(Input {}).await.map_err(|e| {
-            println!("{:?}", e);
-            Status::internal("")
-        })?;
+        let prefs = self.cli.get_list(Input {}).await.map_err(Status::from)?;
 
         Ok(Response::new(pb::PrefectureList {
             items: prefs

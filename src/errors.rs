@@ -30,9 +30,9 @@ impl From<reqwest::Error> for AppError {
     }
 }
 
-impl Into<Status> for AppError {
-    fn into(self) -> Status {
-        match self {
+impl From<AppError> for Status {
+    fn from(e: AppError) -> Self {
+        match e {
             AppError::BadRequest(_) => Status::invalid_argument(""),
             AppError::UnAuthenticate => Status::unauthenticated(""),
             AppError::Forbidden => Status::permission_denied(""),

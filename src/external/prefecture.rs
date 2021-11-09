@@ -2,18 +2,18 @@ use crate::errors::{AppError, AppResult};
 use crate::external::{CallInput, Client};
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 impl Client {
     pub async fn get_list(
         &self,
-        input: get_prefectures::Input,
+        _input: get_prefectures::Input,
     ) -> AppResult<get_prefectures::Output> {
         #[derive(Debug, Serialize)]
         struct Body {}
 
         let body = Body {};
 
-        println!("input: {}", serde_json::to_string(&input).unwrap());
         println!("json body: {}", serde_json::to_string(&body).unwrap());
 
         let query = vec![];
@@ -29,7 +29,7 @@ impl Client {
                 ),
                 query,
             },
-            "test".to_string(),
+            Uuid::new_v4().to_string(),
         )
         .await?
         .error_for_status()?

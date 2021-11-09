@@ -24,7 +24,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let port = env::var("PORT").unwrap_or("3000".to_string());
     let addr: SocketAddr = ([0, 0, 0, 0], port.parse().unwrap()).into();
 
-    let pref_cli = Client::new();
+    let pref_cli = Client::new("https://liberaworks-dev.appspot.com".to_string());
 
     Server::builder()
         .add_service(reflection)
