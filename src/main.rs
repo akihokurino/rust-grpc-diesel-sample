@@ -19,7 +19,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap();
 
     let port = env::var("PORT").unwrap_or("3000".to_string());
-
     let addr: SocketAddr = ([0, 0, 0, 0], port.parse().unwrap()).into();
 
     Server::builder()
