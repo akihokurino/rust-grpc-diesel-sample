@@ -1,15 +1,11 @@
 syntax = "proto3";
-package pb;
+package user;
 
 import "common.proto";
 
 service UserService {
     rpc GetMe (common.Empty) returns (User);
-//    rpc List (common.Empty) returns (UserList);
-//    rpc Get (common.ID) returns (User);
-//    rpc Create (CreateUserRequest) returns (common.ID);
-//    rpc Update (UpdateUserRequest) returns (common.Empty);
-//    rpc Delete (common.ID) returns (common.Empty);
+    rpc List (common.Empty) returns (UserList);
 }
 
 message User {
@@ -18,14 +14,5 @@ message User {
 }
 
 message UserList {
-    repeated User users = 1;
-}
-
-message CreateUserRequest {
-    string name = 1;
-}
-
-message UpdateUserRequest {
-    string id = 1;
-    string name = 2;
+    repeated User items = 1;
 }

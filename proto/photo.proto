@@ -1,0 +1,17 @@
+syntax = "proto3";
+package photo;
+
+import "common.proto";
+
+service PhotoService {
+    rpc List (common.Empty) returns (PhotoList);
+}
+
+message Photo {
+    string id = 1;
+    string url = 2;
+}
+
+message PhotoList {
+    repeated Photo items = 1;
+}
