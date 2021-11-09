@@ -4,3 +4,7 @@ package common;
 message Empty {
 
 }
+
+message ID {
+    string id = 1;
+}

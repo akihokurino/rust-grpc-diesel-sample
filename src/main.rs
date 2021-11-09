@@ -2,17 +2,18 @@ use tonic::{transport::Server, Request, Response, Status};
 
 use std::env;
 use std::net::SocketAddr;
-use user::user_service_server::{UserService, UserServiceServer};
+use pb::user_service_server::{UserService, UserServiceServer};
 
 mod reflection {
     pub(crate) const FILE_DESCRIPTOR_SET: &[u8] =
         tonic::include_file_descriptor_set!("proto_descriptor");
 }
-pub mod user {
-    tonic::include_proto!("user");
-}
 pub mod common {
     tonic::include_proto!("common");
+}
+pub mod pb {
+    tonic::include_proto!("user");
+    tonic::include_proto!("post");
 }
 
 #[derive(Debug, Default)]
@@ -20,10 +21,11 @@ pub struct UserServiceImpl {}
 
 #[tonic::async_trait]
 impl UserService for UserServiceImpl {
-    async fn get_me(&self, request: Request<common::Empty>) -> Result<Response<user::Me>, Status> {
+    async fn get_me(&self, request: Request<common::Empty>) -> Result<Response<pb::User>, Status> {
         println!("Got a request: {:?}", request);
 
-        let reply = user::Me {
+        let reply = pb::User {
+            id: "1".to_string(),
             name: format!("Hello {}!", "akiho").into(),
         };
 

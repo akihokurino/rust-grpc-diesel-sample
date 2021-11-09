@@ -1,6 +1,7 @@
-# rust-grpc-sample
+# rust-grpc-diesel-sample
 
 ## 構成
-- rust 1.53.0
-- grpc
-https://github.com/hyperium/tonic
+- rust v1.53.0
+- grpc（ https://github.com/hyperium/tonic )
+- diesel（ https://github.com/diesel-rs/diesel ）
+
