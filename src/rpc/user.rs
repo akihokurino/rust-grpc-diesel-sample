@@ -1,6 +1,7 @@
 use tonic::{Request, Response, Status};
 
 use pb::user_service_server::{UserService, UserServiceServer};
+use uuid::Uuid;
 
 pub mod common {
     tonic::include_proto!("common");
@@ -18,11 +19,9 @@ pub struct UserServiceImpl {}
 
 #[tonic::async_trait]
 impl UserService for UserServiceImpl {
-    async fn get_me(&self, request: Request<common::Empty>) -> Result<Response<pb::User>, Status> {
-        println!("Got a request: {:?}", request);
-
+    async fn get_me(&self, _request: Request<common::Empty>) -> Result<Response<pb::User>, Status> {
         let reply = pb::User {
-            id: "1".to_string(),
+            id: Uuid::new_v4().to_string(),
             name: format!("Hello {}!", "World").into(),
         };
         Ok(Response::new(reply))
@@ -30,12 +29,10 @@ impl UserService for UserServiceImpl {
 
     async fn list(
         &self,
-        request: Request<common::Empty>,
+        _request: Request<common::Empty>,
     ) -> Result<Response<pb::UserList>, Status> {
-        println!("Got a request: {:?}", request);
-
         let reply = pb::User {
-            id: "1".to_string(),
+            id: Uuid::new_v4().to_string(),
             name: format!("Hello {}!", "World").into(),
         };
         Ok(Response::new(pb::UserList { items: vec![reply] }))

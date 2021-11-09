@@ -1,4 +1,4 @@
-# rust-grpc-diesel-sample
+# rust-grpc-sample
 
 ## 構成
 - rust v1.53.0
