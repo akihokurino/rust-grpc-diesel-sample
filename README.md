@@ -1,4 +1,4 @@
-# rust-grpc-reqwest-sample
+# rust-grpc-http-sample
 
 ## 構成
 - rust v1.53.0
